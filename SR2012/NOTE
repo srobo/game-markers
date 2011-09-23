@@ -1,0 +1,11 @@
+
+
+There are 2 sets of markers here: one for team use/development, and one for
+the competition.  Current dimensions:
+
+    Marker                     | Marker Width
+    ---------------------------+--------------
+    marker_set_[ab]/token-*    | 100mm
+    marker_set_[ab]/bucket-*   | 100mm
+    marker_set_[ab]/robot-*    | 100mm
+    marker_set_[ab]/arena-*    | 250mm
