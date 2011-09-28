@@ -1,0 +1,3 @@
+[submodule "libkoki"]
+	path = libkoki
+	url = git://srobo.org/~ckirkham/libkoki.git
