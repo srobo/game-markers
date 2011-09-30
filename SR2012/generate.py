@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-import sys
+import sys, os
 
 # add libkoki/tools to path to allow inclusion of markergen
-sys.path.insert(0, "libkoki/tools/")
+sys.path.insert(0, os.path.join(
+        os.path.dirname( __file__ ), "libkoki/tools" ) )
 from markergen import *
 
 # DIMENSIONS
