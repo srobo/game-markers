@@ -3,7 +3,7 @@
 # set to 100 to generate the competition markers.
 BASE=0
 
-for i in `seq 0 3`
+for i in `seq 0 7`
 do
     id=$((i + BASE + 32))
     ./koki-marker-gen --width 160 --desc "SLOT $i" $id slot
