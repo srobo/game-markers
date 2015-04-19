@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+from collections import namedtuple
+import os
+from subprocess import check_call
+
+MarkerRange = namedtuple("MarkerRange", ["base", "count", "size"])
+
+marker_types = {
+    "BOUNDARY": MarkerRange(0,28,250),
+    "ROBOT": MarkerRange(28,4,100),
+    "FLAG": MarkerRange(32,8,250)
+}
+
+arena_offsets = {
+    "A": 100,
+    "B": 140
+}
+
+for arena, arena_offset in arena_offsets.iteritems():
+    for marker_type, info in marker_types.iteritems():
+        for code in range(info.base, info.base + info.count):
+
+            desc = "Arena {0}: {1} ({2})".format( arena, marker_type, code )
+            prefix = "comp/{0}-{1}".format( arena, marker_type )
+
+            paper_size = "A4"
+            if info.size > 180:
+                paper_size = "A3"
+
+            check_call( ["./.kokimarker/koki-marker-gen",
+                         "--paper-size", paper_size,
+                         "--desc", desc,
+                         "--width", str(info.size),
+                         str(code + arena_offset),
+                         prefix ] )
