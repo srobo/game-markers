@@ -67,5 +67,5 @@ for base, base_offset in base_offsets.items():
 
         for corner in range(4):
             code = corner + offset + 2
-            label = "Net {0}, Corner {0}".format(net, corner)
+            label = "Net {0}, Corner {1}".format(net, corner)
             gen("TOKEN_SIDE", code, label)
