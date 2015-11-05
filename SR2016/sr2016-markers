@@ -1,0 +1,67 @@
+#!/usr/bin/env python
+
+from collections import namedtuple
+import os
+from subprocess import check_call
+
+MarkerRange = namedtuple("MarkerRange", ["base", "count", "size"])
+
+marker_types = {
+    "ARENA": MarkerRange(0, 28, 250),
+    "ROBOT": MarkerRange(28, 4, 100),
+}
+
+TOKEN_SIZE = 200
+nets = {
+    "A": 32,
+    "B": 38,
+    "C": 44
+}
+
+base_offsets = {
+    ("dev/dev", "dev"): 0,
+    ("comp/A", "Arena A"): 100,
+    ("comp/B", "Arena B"): 150
+}
+
+def generate(code, size, marker_type, desc):
+
+    prefix = "{0}-{1}".format( path, marker_type )
+
+    paper_size = "A4"
+    if size > 180:
+        paper_size = "A3"
+
+    check_call( ["./kokimarker/koki-marker-gen",
+                 "--paper-size", paper_size,
+                 "--desc", desc,
+                 "--width", str(size),
+                 str(code),
+                 prefix ] )
+
+
+for base, base_offset in base_offsets.items():
+    path, base_desc = base
+
+    # ARENA and ROBOT markers
+    for marker_type, info in marker_types.items():
+        for code in range(info.base, info.base + info.count):
+
+            desc = "{0}: {1} ({2})".format( base_desc, marker_type, code )
+            true_code = code + base_offset
+            generate(true_code, info.size, marker_type, desc)
+
+    # TOKEN markers
+    for net, offset in nets.items():
+        def token_desc(token_type, code):
+            return "{0}: {1} (Net {2}; {3})".format( base_desc, token_type, net, code )
+
+        def gen(token_type, code):
+            desc = token_desc(token_type, code)
+            type_for_name = "TOKEN_NET_{0}_{1}".format(net, token_type[6:])
+            generate(base_offset + code, TOKEN_SIZE, type_for_name, desc)
+
+        gen("TOKEN_TOP", offset)
+        gen("TOKEN_BOTTOM", offset + 1)
+        for code in range(offset + 2, offset + 6):
+            gen("TOKEN_SIDE", code)
