@@ -1,0 +1,3 @@
+[submodule "SR2017/kokimarker"]
+	path = SR2017/kokimarker
+	url = git://git.srobo.org/kokimarker
