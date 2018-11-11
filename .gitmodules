@@ -1,3 +1,15 @@
+[submodule "SR2012/libkoki"]
+	path = SR2012/libkoki
+	url = git://git.srobo.org/libkoki.git
+[submodule "SR2014/kokimarker"]
+	path = SR2014/kokimarker
+	url = git://git.srobo.org/kokimarker
+[submodule "SR2015/.kokimarker"]
+	path = SR2015/.kokimarker
+	url = git://git.srobo.org/kokimarker
+[submodule "SR2016/kokimarker"]
+	path = SR2016/kokimarker
+	url = git://git.srobo.org/kokimarker
 [submodule "SR2017/kokimarker"]
 	path = SR2017/kokimarker
 	url = git://git.srobo.org/kokimarker
