@@ -1,0 +1,49 @@
+#!/usr/bin/env python
+
+from collections import namedtuple
+import os.path
+from subprocess import check_call
+
+MarkerRange = namedtuple("MarkerRange", ["base", "count", "size"])
+
+marker_types = {
+    "ARENA": MarkerRange(0, 28, 250),
+    "ROBOT": MarkerRange(28, 4, 100),
+    "TOKEN": MarkerRange(32, 4, 100),
+    "VOLCANO": MarkerRange(36, 20, 100),
+}
+
+base_offsets = {
+    ("dev/dev", "dev"): 0,
+    ("comp/comp", "Arena A"): 100,
+}
+
+def generate(path, code, size, marker_type, desc):
+
+    prefix = "{0}-{1}".format( path, marker_type )
+
+    paper_size = "A4"
+    if size > 180:
+        paper_size = "A3"
+
+    check_call( ["./kokimarker/koki-marker-gen",
+                 "--paper-size", paper_size,
+                 "--desc", desc,
+                 "--width", str(size),
+                 "--prefix", prefix,
+                 str(code)] )
+
+
+for base, base_offset in base_offsets.items():
+    path, base_desc = base
+
+    dirname = os.path.dirname(path)
+    if not os.path.exists(dirname):
+        os.mkdir(dirname)
+
+    for marker_type, info in marker_types.items():
+        for code in range(info.base, info.base + info.count):
+
+            desc = "{0}: {1} ({2})".format( base_desc, marker_type, code )
+            true_code = code + base_offset
+            generate(path, true_code, info.size, marker_type, desc)
