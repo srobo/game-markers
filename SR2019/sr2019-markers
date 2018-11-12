@@ -9,7 +9,7 @@ MarkerRange = namedtuple("MarkerRange", ["base", "count", "size"])
 marker_types = {
     "ARENA": MarkerRange(0, 28, 250),
     "ROBOT": MarkerRange(28, 4, 100),
-    "TOKEN": MarkerRange(32, 4, 100),
+    "TOKEN": MarkerRange(32, 4, 115),
 }
 
 base_offsets = {
