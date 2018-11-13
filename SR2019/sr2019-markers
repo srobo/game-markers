@@ -14,7 +14,7 @@ marker_types = {
 
 base_offsets = {
     ("dev/dev", "dev"): 0,
-    ("comp/comp", "Arena A"): 100,
+    ("comp/comp", "Arena"): 100,
 }
 
 def generate(path, code, size, marker_type, desc):
