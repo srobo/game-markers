@@ -13,3 +13,6 @@
 [submodule "SR2017/kokimarker"]
 	path = SR2017/kokimarker
 	url = git://git.srobo.org/kokimarker
+[submodule "SR2019/kokimarker"]
+	path = SR2019/kokimarker
+	url = git://git.srobo.org/kokimarker
