@@ -2,7 +2,7 @@
 
 # Amount to trim from the top and bottom each ordinary PDF. This is the height
 # of an A4 sheet divided by four (so we trim half a sheets worth overall).
-TRIM=7.425cm
+TRIM=86mm
 
 cd $(dirname $0)
 
@@ -17,8 +17,11 @@ for f in comp/comp-TOKEN-128.pdf \
 do
     dest=${DEST}/$(basename $f)
     dest=${dest%.pdf}-2x1.pdf
-    pdfjam --trim "0 $TRIM 0 $TRIM" --nup 1x2 --outfile $dest $f $f
+    pdfjam --trim "0 $TRIM 0 $TRIM" --outfile tmp.pdf --papersize '{210mm,125mm}' $f
+    pdfjam --nup 1x2 --outfile $dest tmp.pdf tmp.pdf
+    rm tmp.pdf
 done
+
 
 pdfjam --outfile ${DEST}/comp-TOKEN-all-2x1.pdf \
     ${DEST}/comp-TOKEN-128-2x1.pdf \
