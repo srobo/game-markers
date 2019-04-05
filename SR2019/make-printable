@@ -13,7 +13,7 @@ mkdir -p $DEST
 for f in comp/comp-TOKEN-128.pdf \
     comp/comp-TOKEN-129.pdf \
     comp/comp-TOKEN-130.pdf \
-    comp/comp-TOKEN-131.pdf
+    comp/comp-TOKEN-132.pdf
 do
     dest=${DEST}/$(basename $f)
     dest=${dest%.pdf}-2x1.pdf
@@ -27,4 +27,4 @@ pdfjam --outfile ${DEST}/comp-TOKEN-all-2x1.pdf \
     ${DEST}/comp-TOKEN-128-2x1.pdf \
     ${DEST}/comp-TOKEN-129-2x1.pdf \
     ${DEST}/comp-TOKEN-130-2x1.pdf \
-    ${DEST}/comp-TOKEN-131-2x1.pdf
+    ${DEST}/comp-TOKEN-132-2x1.pdf
