@@ -1,18 +1,18 @@
 [submodule "SR2012/libkoki"]
 	path = SR2012/libkoki
-	url = git://git.srobo.org/libkoki.git
+	url = https://github.com/srobo/libkoki
 [submodule "SR2014/kokimarker"]
 	path = SR2014/kokimarker
-	url = git://git.srobo.org/kokimarker
+	url = https://github.com/srobo/kokimarker
 [submodule "SR2015/.kokimarker"]
 	path = SR2015/.kokimarker
-	url = git://git.srobo.org/kokimarker
+	url = https://github.com/srobo/kokimarker
 [submodule "SR2016/kokimarker"]
 	path = SR2016/kokimarker
-	url = git://git.srobo.org/kokimarker
+	url = https://github.com/srobo/kokimarker
 [submodule "SR2017/kokimarker"]
 	path = SR2017/kokimarker
-	url = git://git.srobo.org/kokimarker
+	url = https://github.com/srobo/kokimarker
 [submodule "SR2019/kokimarker"]
 	path = SR2019/kokimarker
-	url = git://git.srobo.org/kokimarker
+	url = https://github.com/srobo/kokimarker
