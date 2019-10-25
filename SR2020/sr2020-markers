@@ -20,13 +20,9 @@ base_offsets = {
     ("comp/comp", "Arena"): 100,
 }
 
-def generate(path, code, size, marker_type, desc):
+def generate_at_paper_size(path, code, size, marker_type, desc, paper_size):
 
     prefix = "{0}-{1}".format( path, marker_type )
-
-    paper_size = "A4"
-    if size > 180:
-        paper_size = "A3"
 
     check_call( ["./kokimarker/koki-marker-gen",
                  "--paper-size", paper_size,
@@ -34,6 +30,23 @@ def generate(path, code, size, marker_type, desc):
                  "--width", str(size),
                  "--prefix", prefix,
                  str(code)] )
+
+
+def generate(path, code, size, marker_type, desc):
+    if size <= 170:
+        # This marker will easily fit on A4, no need to provide an A3 version.
+        paper_sizes = ["A4"]
+    elif size <= 200:
+        # Some A4 printers might struggle with the tight margin, but we should
+        # also assume that it's easier to get hold of an A4 printer than an A3
+        # printer, so it makes sense to offer both.
+        paper_sizes = ["A3", "A4"]
+    else:
+        # This marker will only fit on A3.
+        paper_sizes = ["A3"]
+
+    for paper_size in paper_sizes:
+        generate_at_paper_size(path, code, size, marker_type, desc, paper_size)
 
 
 for base, base_offset in base_offsets.items():
