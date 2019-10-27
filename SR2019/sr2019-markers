@@ -42,6 +42,9 @@ for base, base_offset in base_offsets.items():
     for marker_type, info in marker_types.items():
         for code in range(info.base, info.base + info.count):
 
+            if code == 31:
+                 code = 32
+
             desc = "{0}: {1} ({2})".format( base_desc, marker_type, code )
             true_code = code + base_offset
             generate(path, true_code, info.size, marker_type, desc)
