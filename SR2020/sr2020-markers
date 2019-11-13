@@ -1,0 +1,72 @@
+#!/usr/bin/env python2.7
+
+from collections import namedtuple
+import os.path
+import glob
+from subprocess import check_call
+
+SR_YEAR = "2020"
+
+MarkerRange = namedtuple("MarkerRange", ["base", "count", "size"])
+
+marker_types = {
+    "ARENA": MarkerRange(0, 28, 250),
+    "TOKEN_GOLD": MarkerRange(32, 8, 200),
+    "TOKEN_SILVER": MarkerRange(40, 8, 200),
+}
+
+base_offsets = {
+    ("dev/dev", "dev"): 0,
+    ("comp/comp", "Arena"): 100,
+}
+
+def generate_at_paper_size(path, code, size, marker_type, desc, paper_size):
+
+    prefix = "{0}-{1}".format( path, marker_type )
+
+    check_call( ["./kokimarker/koki-marker-gen",
+                 "--paper-size", paper_size,
+                 "--desc", desc,
+                 "--width", str(size),
+                 "--prefix", prefix,
+                 str(code)] )
+
+
+def generate(path, code, size, marker_type, desc):
+    if size <= 170:
+        # This marker will easily fit on A4, no need to provide an A3 version.
+        paper_sizes = ["A4"]
+    elif size <= 200:
+        # Some A4 printers might struggle with the tight margin, but we should
+        # also assume that it's easier to get hold of an A4 printer than an A3
+        # printer, so it makes sense to offer both.
+        paper_sizes = ["A3", "A4"]
+    else:
+        # This marker will only fit on A3.
+        paper_sizes = ["A3"]
+
+    for paper_size in paper_sizes:
+        generate_at_paper_size(path, code, size, marker_type, desc, paper_size)
+
+
+for base, base_offset in base_offsets.items():
+    path, base_desc = base
+
+    dirname = os.path.dirname(path)
+    if not os.path.exists(dirname):
+        os.mkdir(dirname)
+
+    for marker_type, info in marker_types.items():
+        for code in range(info.base, info.base + info.count):
+
+            desc = "{0}: {1} ({2})".format( base_desc, marker_type, code )
+            true_code = code + base_offset
+            generate(path, true_code, info.size, marker_type, desc)
+
+    basename = os.path.basename(path)
+    zip_path = "sr-{0}-markers-sr{1}.zip".format(basename, SR_YEAR)
+    if os.path.exists(zip_path):
+        os.remove(zip_path)
+
+    pdfs = glob.glob("{0}*.pdf".format(path))
+    check_call(["zip", "--junk-paths", zip_path] + pdfs)

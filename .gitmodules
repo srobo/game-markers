@@ -16,3 +16,6 @@
 [submodule "SR2019/kokimarker"]
 	path = SR2019/kokimarker
 	url = https://github.com/srobo/kokimarker
+[submodule "SR2020/kokimarker"]
+	path = SR2020/kokimarker
+	url = https://github.com/srobo/kokimarker
