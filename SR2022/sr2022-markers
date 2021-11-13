@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -ex
+
+# Dev markers
+zoloto marker-pdfs APRILTAG_36H11 dev 200 --description-format 'Student Robotics {marker_type} - Dev #{marker_id}' --range 0-27
+zip --junk-paths -r sr-dev-markers-sr2022.zip dev/
+
+# Comp markers
+zoloto marker-pdfs APRILTAG_36H11 comp 200 --description-format 'Student Robotics {marker_type} - Comp #{marker_id}' --range 100-127
+zip --junk-paths -r sr-comp-markers-sr2022.zip comp/
