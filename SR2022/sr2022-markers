@@ -2,10 +2,17 @@
 
 set -ex
 
+# Clear any existing markers
+rm -r dev/ comp/
+
 # Dev markers
-zoloto marker-pdfs APRILTAG_36H11 dev 200 --description-format 'Student Robotics {marker_type} - Dev #{marker_id}' --range 0-27
+zoloto marker-pdfs APRILTAG_36H11 dev 200 --description-format 'Student Robotics {marker_type} - Dev #{marker_id}' --range 0-27 --page-size A3
+rename .pdf _a3.pdf dev/*
+zoloto marker-pdfs APRILTAG_36H11 dev 200 --description-format 'Student Robotics {marker_type} - Dev #{marker_id}' --range 0-27 --page-size A3 --force-a4
 zip --junk-paths -r sr-dev-markers-sr2022.zip dev/
 
 # Comp markers
-zoloto marker-pdfs APRILTAG_36H11 comp 200 --description-format 'Student Robotics {marker_type} - Comp #{marker_id}' --range 100-127
+zoloto marker-pdfs APRILTAG_36H11 comp 200 --description-format 'Student Robotics {marker_type} - Comp #{marker_id}' --range 100-127 --page-size A3
+rename .pdf _a3.pdf comp/*
+zoloto marker-pdfs APRILTAG_36H11 comp 200 --description-format 'Student Robotics {marker_type} - Comp #{marker_id}' --range 100-127 --page-size A3 --force-a4
 zip --junk-paths -r sr-comp-markers-sr2022.zip comp/
