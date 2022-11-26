@@ -9,5 +9,5 @@ rm -r markers
 zoloto marker-pdfs APRILTAG_36H11 markers 200 --description-format 'Student Robotics {marker_type} - #{marker_id}' --range 0-27 --page-size A3
 rename .pdf _a3.pdf markers/*
 zoloto marker-pdfs APRILTAG_36H11 markers 200 --description-format 'Student Robotics {marker_type} - #{marker_id}' --range 0-27 --page-size A3 --force-a4
-zoloto marker-pdfs APRILTAG_36H11 markers 80 --description-format 'Student Robotics {marker_type} - #{marker_id}' --range 27-99 --page-size A4
+zoloto marker-pdfs APRILTAG_36H11 markers 80 --description-format 'Student Robotics {marker_type} - #{marker_id}' --range 28-100 --page-size A4
 zip --junk-paths -r sr-markers-sr2023.zip markers/
