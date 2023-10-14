@@ -1,0 +1,13 @@
+#!/bin/bash
+set -ex
+
+# Clear any existing markers
+rm wall_markers.pdf prop_markers.pdf || true
+
+april_vision marker_generator SINGLE \
+    --description_format 'Student Robotics - #{marker_id}' --border_width 4 --tick_length 40 \
+    --range '0-27' --all_filename 'wall_markers.pdf' --marker_size 150
+
+april_vision marker_generator SINGLE \
+    --description_format 'Student Robotics - #{marker_id}' --border_width 4 --tick_length 40 \
+    --range '150-199,110,120-123,125-128' --all_filename 'prop_markers.pdf' --marker_size 80
