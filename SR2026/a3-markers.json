@@ -1,0 +1,44 @@
+{
+    "filename": "sr-markers-sr2026-a3.pdf",
+    "pages": [
+        {
+            "type": "SINGLE",
+            "page_size": "A4",
+            "bottom_margin": 50,
+            "marker_size": 150,
+            "range": "0-19",
+            "description_format": "Student Robotics - Arena - #{marker_id}"
+
+        },
+        {
+            "type": "TILE",
+            "num_rows": 3,
+            "num_columns": 2,
+            "repeat": 6,
+            "page_size": "A3",
+            "left_margin": 10,
+            "top_margin": 10,
+            "row_padding": 20,
+            "column_padding": 20,
+            "marker_size": 80,
+            "cutline": 10,
+            "range": "100-139",
+            "description_format": "Student Robotics - Acidic Sample - #{marker_id}"
+        },
+        {
+            "type": "TILE",
+            "num_rows": 3,
+            "num_columns": 2,
+            "repeat": 6,
+            "page_size": "A3",
+            "left_margin": 10,
+            "top_margin": 10,
+            "row_padding": 20,
+            "column_padding": 20,
+            "marker_size": 80,
+            "cutline": 10,
+            "range": "140-179",
+            "description_format": "Student Robotics - Basic Sample - #{marker_id}"
+        }
+    ]
+}
